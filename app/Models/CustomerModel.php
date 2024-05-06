@@ -9,9 +9,9 @@ class CustomerModel extends Model
     protected $table = 'customers';
 
     protected $fillable = [
-        'name',
-        'email',
-        'phone',
+        'name', // Nama pelanggan
+        'email', // Email pelanggan
+        'phone', // Nomor telepon pelanggan
     ];
 
     public function orders()

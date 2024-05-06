@@ -11,9 +11,9 @@ class OrderDetail extends Model
     public $timestamps = true;
 
     protected $fillable = [
-        'order_id',
-        'food_id',
-        'quantity',
-        'price'
+        'order_id', // ID pesanan
+        'food_id', // ID makanan
+        'quantity', // Jumlah makanan
+        'price' // Harga makanan
     ];
 }

@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Permission extends Model
 {
     use HasFactory;
+    // Model ini digunakan untuk mengatur izin-izin dalam aplikasi
 }

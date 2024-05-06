@@ -11,10 +11,11 @@ class Order extends Model
     public $timestamps = true;
 
     protected $fillable = [
-        'customer_name',
-        'table_number',
-        'order_date'
+        'customer_name', // Nama pelanggan
+        'table_number', // Nomor meja
+        'order_date' // Tanggal pemesanan
     ];
+
     public function orderDetails()
     {
         return $this->hasMany(OrderDetail::class);

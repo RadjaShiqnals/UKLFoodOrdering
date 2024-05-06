@@ -18,10 +18,10 @@ class User extends Authenticatable implements JWTSubject
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
-        'email',
-        'password',
-        'role_id',
+        'name', // Nama pengguna
+        'email', // Email pengguna
+        'password', // Kata sandi pengguna
+        'role_id', // ID peran pengguna
     ];
 
     /**
@@ -30,8 +30,8 @@ class User extends Authenticatable implements JWTSubject
      * @var array<int, string>
      */
     protected $hidden = [
-        'password',
-        'remember_token',
+        'password', // Sembunyikan kata sandi pengguna
+        'remember_token', // Sembunyikan token pengingat
     ];
 
     /**
@@ -41,8 +41,9 @@ class User extends Authenticatable implements JWTSubject
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
-        'password' => 'hashed',
+        'password' => 'hashed', // Enkripsi kata sandi
     ];
+
     public function getJWTIdentifier()
     {
         return $this->getKey();
@@ -63,5 +64,4 @@ class User extends Authenticatable implements JWTSubject
     {
         return $this->role_id === $roleId;
     }
-
 }

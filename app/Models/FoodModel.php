@@ -11,9 +11,9 @@ class FoodModel extends Model
     public $timestamps = true;
 
     protected $fillable = [
-        'name',
-        'spicy_level',
-        'price',
-        'image'
+        'name', // Nama makanan
+        'spicy_level', // Tingkat kepedasan makanan
+        'price', // Harga makanan
+        'image' // Gambar makanan
     ];
 }
