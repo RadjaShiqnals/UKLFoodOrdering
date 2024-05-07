@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 06, 2024 at 01:35 PM
+-- Generation Time: May 07, 2024 at 03:11 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -99,7 +99,8 @@ INSERT INTO `food` (`id_food`, `name`, `spicy_level`, `price`, `image`, `created
 (1, 'Ghostly Chicken', 'Spicy', 15000, 'ghostly-chicken.jpeg', '2024-05-06 02:46:23', '2024-05-06 02:58:31'),
 (2, 'Nasi Padang', 'Mild', 12000, 'nasi-padang.jpeg', '2024-05-06 02:46:23', '2024-05-06 02:58:31'),
 (3, 'Mie Pedas', 'Spicy', 12000, '1714974306-LogoChannel.jpg', '2024-05-05 22:45:06', '2024-05-05 22:45:06'),
-(4, 'Seblak Jumbo', 'Medium', 12000, 'example.jpeg', '2024-05-05 22:48:26', '2024-05-06 01:28:10');
+(4, 'Seblak Jumbo', 'Medium', 12000, 'example.jpeg', '2024-05-05 22:48:26', '2024-05-06 01:28:10'),
+(6, 'Medium Rare Steak', 'Mild', 12000, 'medium-rare-steak.png', '2024-05-06 16:06:59', '2024-05-06 16:06:59');
 
 -- --------------------------------------------------------
 
@@ -446,7 +447,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `food`
 --
 ALTER TABLE `food`
-  MODIFY `id_food` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_food` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `migrations`
