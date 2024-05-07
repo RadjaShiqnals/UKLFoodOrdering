@@ -117,8 +117,19 @@ class FoodController extends Controller
             'image' => 'required',
         ]);
 
+        // Jika validasi gagal, kembalikan respons dengan status 400
         if ($validator->fails()) {
             return response()->json(['error' => $validator->errors()], 400);
+        }
+
+        // Periksa apakah terdapat token bearer dalam request
+        if (!$token = $request->bearerToken()) {
+            return response()->json(['error' => 'Unauthorized'], 401);
+        }
+
+        // Validasi token bearer
+        if (!JWTAuth::parseToken()->authenticate()) {
+            return response()->json(['error' => 'Unauthorized'], 401);
         }
 
         // Periksa apakah item makanan ada
@@ -159,28 +170,38 @@ class FoodController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function deleteMenu($id)
-    {
-        // Cari makanan berdasarkan ID
+    public function deleteMenu(Request $request, $id)
+{
+    // Cari makanan berdasarkan ID
 
-        $food = FoodModel::find($id);
+    $food = FoodModel::find($id);
 
-        // Jika makanan tidak ditemukan, kembalikan respons dengan status 404
+    // Jika makanan tidak ditemukan, kembalikan respons dengan status 404
 
-        if (!$food) {
-            return response()->json(['error' => 'Food not found'], 404);
-        }
-
-        // Periksa apakah pengguna yang diautentikasi adalah admin (role_id = 1)
-        if (Auth::user()->hasRole(1)) {
-            // Jika ya, hapus makanan
-
-            $food->delete();
-            return response()->json(['message' => 'Food deleted successfully'], 200);
-            // Jika tidak, kembalikan respons dengan status 401
-
-        } else {
-            return response()->json(['error' => 'Unauthorized'], 401);
-        }
+    if (!$food) {
+        return response()->json(['error' => 'Food not found'], 404);
     }
+
+    // Periksa apakah terdapat token bearer dalam request
+    if (!$token = $request->bearerToken()) {
+        return response()->json(['error' => 'Unauthorized'], 401);
+    }
+
+    // Validasi token bearer
+    if (!JWTAuth::parseToken()->authenticate()) {
+        return response()->json(['error' => 'Unauthorized'], 401);
+    }
+    
+    // Periksa apakah pengguna yang diautentikasi adalah admin (role_id = 1)
+    if (Auth::check() && Auth::user()->hasRole(1)) {
+        // Jika ya, hapus makanan
+
+        $food->delete();
+        return response()->json(['message' => 'Food deleted successfully'], 200);
+        // Jika tidak, kembalikan respons dengan status 401
+
+    } else {
+        return response()->json(['error' => 'Unauthorized'], 401);
+    }
+}
 }
